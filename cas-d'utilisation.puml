@@ -1,0 +1,16 @@
+@startuml
+left to right direction
+actor "Admin" as fc
+
+  usecase "Consulter liste client" as UC1
+  usecase "modifier client" as UC2
+  usecase "suprimer client" as UC3
+  usecase "ajouter client" as UC4
+  usecase "rechercher client" as UC5
+
+fc --> UC1
+fc --> UC2
+fc --> UC3
+fc --> UC4
+fc --> UC5
+@enduml
