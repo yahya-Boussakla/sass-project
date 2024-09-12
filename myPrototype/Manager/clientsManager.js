@@ -47,9 +47,15 @@ const { ClientModel } = require('../Data/dataManager');
 
     modifyInfo(id, info){
       let clients = this.ClientModel.getAllClients();
-      const information = clients.filter(client => client.id == Number(id));
-      information[0].firstName = info;
-      
+      // const information = clients.filter(client => client.id == Number(id));
+      // information[0].firstName = info;
+      clients.forEach(client => {
+        if (client.id == Number(id)) {
+          client.firstName = info;
+        }
+      });
+      this.ClientModel.addClientData(clients);
+
     } 
   }
 
