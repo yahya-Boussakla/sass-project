@@ -5,26 +5,52 @@ const { ClientModel } = require('../Data/dataManager');
 
     constructor(client) {
       this.#client = client;
-      this.ClientMode = new ClientModel();
+      this.ClientModel = new ClientModel();
     }
 
     addClient(){
-        let clients = this.ClientMode.getAllClients();
+        let clients = this.ClientModel.getAllClients();
         let maxId = clients .reduce((max, client) => Math.max(max, client.id),0)
         maxId += 1;
         this.#client.id = maxId;
         console.log(this.#client);
         clients.push(this.#client);
-        this.ClientMode.addClintData(clients);
+        this.ClientModel.addClientData(clients);
     }
 
     viewClients(){
-      return this.ClientMode.getAllClients();
+      return this.ClientModel.getAllClients();
     }
 
-    deleteClient(){
+    deleteClient(id){
+
+      let clients = this.ClientModel.getAllClients();
       
+      const newArr = clients.filter(client => client.id !== Number(id));
+      this.ClientModel.addClientData(newArr);
+      return 'deleted sucsesfuly';
+    
     }
+
+    findClient(param){
+      let clients = this.ClientModel.getAllClients();
+      if (typeof(param) == "number") {
+        const newArr = clients.filter(client => client.id == param);
+        return newArr;
+      }
+      else{
+        const newArr = clients.filter(client => client.firstName == param);
+        return newArr;
+      }
+
+    }
+
+    modifyInfo(id, info){
+      let clients = this.ClientModel.getAllClients();
+      const information = clients.filter(client => client.id == Number(id));
+      information[0].firstName = info;
+      
+    } 
   }
 
   

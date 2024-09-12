@@ -17,11 +17,13 @@ class ClientModel{
     }
 
     // push clients data in json file
-    addClintData(ClientData){
+    addClientData(ClientData){
         const updatedData = JSON.stringify(ClientData, null, 2);
         fs.writeFileSync(this.dataPath, updatedData);
         console.log("Data has been added successfully.");
     }
+
+    
 
 }
 
